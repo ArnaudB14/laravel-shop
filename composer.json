@@ -15,8 +15,7 @@
     ],
     "require": {
         "php": "^7.1|^8.1",
-        "illuminate/console": "~8.0",
-        "amsgames/laravel-shop-gateway-paypal": "1.0.*"
+        "illuminate/console": "~8.0"
     },
     "autoload": {
         "classmap": [
