@@ -14,8 +14,7 @@
         }
     ],
     "require": {
-        "php": "^7.1|^8.1",
-        "amsgames/laravel-shop-gateway-paypal": "1.0.*"
+        "php": "^7.1|^8.1"
     },
     "autoload": {
         "classmap": [
