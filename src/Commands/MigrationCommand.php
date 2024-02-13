@@ -36,7 +36,7 @@ class MigrationCommand extends Command
      *
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $this->laravel->view->addNamespace('laravel-shop', substr(__DIR__, 0, -8).'views');
 
@@ -129,7 +129,8 @@ class MigrationCommand extends Command
 
         $usersTable  = Config::get('auth.table');
         $userModel   = Config::get('auth.model');
-        $userKeyName = (new $userModel())->getKeyName();
+        $userModelInstance = app(\Config::get('auth.providers.users.model'));
+$userKeyName = $userModelInstance->getKeyName();
 
         $data = array_merge($data, compact('usersTable', 'userKeyName'));
 
@@ -153,7 +154,7 @@ class MigrationCommand extends Command
      */
     protected function createSeeder($data)
     {
-        $seederFile = base_path('/database/seeds') . '/LaravelShopSeeder.php';
+        $seederFile = base_path('/database/seeders') . '/LaravelShopSeeder.php';
 
         $output = $this->laravel->view->make('laravel-shop::generators.seeder')->with($data)->render();
 
