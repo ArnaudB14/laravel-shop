@@ -37,11 +37,12 @@ trait ShopCartTrait
     {
         parent::boot();
 
-        static::deleting(function($user) {
+        static::deleting(function($cart) {
             if (!method_exists(Config::get('auth.providers.users.model'), 'bootSoftDeletingTrait')) {
-                $user->items()->sync([]);
+                foreach ($cart->items as $item) {
+                    $item->delete();
+                }
             }
-
             return true;
         });
     }
