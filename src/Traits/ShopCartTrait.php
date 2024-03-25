@@ -84,7 +84,7 @@ trait ShopCartTrait
                 $reflection = new \ReflectionClass($item);
             }
             $cartItem = call_user_func( Config::get('shop.item') . '::create', [
-                'user_id'       => $this->user->shopId,
+                'user_id'       => $this->user_id ? $this->user_id : 1,
                 'cart_id'       => $this->attributes['id'],
                 'sku'           => is_array($item) ? $item['sku'] : $item->sku,
                 'price'         => is_array($item) ? $item['price'] : $item->price,
@@ -109,7 +109,7 @@ trait ShopCartTrait
                 'currency'      => Config::get('shop.currency'),
                 'quantity'      => $quantity,
                 'class'         => is_array($item) ? null : $reflection->getName(),
-                'reference_id'  => is_array($item) ? null : $item->shopId,
+                'reference_id'  => is_array($item) ? null : $item->reference_id,
             ]);
         } else {
             $cartItem->quantity = $quantityReset 
